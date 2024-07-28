@@ -1,5 +1,5 @@
-import OrdersPage from "@/components/templates/OrdersPage";
+import List from "@/components/organisms/List/List";
 
 export default function Home() {
-  return <OrdersPage />;
+  return <List listType=""/>
 }
