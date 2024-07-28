@@ -22,12 +22,13 @@ export default createGlobalStyle`
   }
 
   html,
-  body {
+  body,
+  #__next {
     max-width: 100vw;
     overflow-x: hidden;
   }
 
-  body {
+  body, #__next {
     font-family: var(--main-font);
     font-style: normal;
     height: 100%;

@@ -1,0 +1,9 @@
+@font-face {
+  font-family: "Silkscreen";
+  src: url("../../public/fonts/silkscreen/slkscr.ttf"),
+    url("../../public/fonts/silkscreen/slkscrb.ttf"),
+    url("../../public/fonts/silkscreen/slkscre.ttf"),
+    url("../../public/fonts/silkscreen/slkscreb.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
