@@ -1,9 +1,29 @@
 @font-face {
   font-family: "Silkscreen";
-  src: url("../../public/fonts/silkscreen/slkscr.ttf"),
-    url("../../public/fonts/silkscreen/slkscrb.ttf"),
-    url("../../public/fonts/silkscreen/slkscre.ttf"),
-    url("../../public/fonts/silkscreen/slkscreb.ttf");
-  font-weight: normal;
-  font-style: normal;
+  src: url("../../public/fonts/silkscreen/slkscr.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Outfit";
+  src: url("../../public/fonts/outfit/Outfit-Light.ttf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Outfit";
+  src: url("../../public/fonts/outfit/Outfit-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Outfit";
+  src: url("../../public/fonts/outfit/Outfit-Medium.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Outfit";
+  src: url("../../public/fonts/outfit/Outfit-Bold.ttf");
+  font-weight: 600;
 }

@@ -6,11 +6,13 @@ export default createGlobalStyle`
     --orange: #FF8C00;
     --yellow: #FFD700;
     --dark-gray: #333333;
+    --black: #242424;
     --mid-gray: #666666;
     --white: #FFFFFF;
     --linear-gradient: linear-gradient(180deg, #FF4500 34%, #FF8C00 73%);
     --logo-font: 'Silkscreen', sans-serif;
     --main-font: 'Outfit', sans-serif;
+    --red-border: 2px solid var(--red);
   }
 
   *,
