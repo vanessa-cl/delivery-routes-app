@@ -4,5 +4,5 @@ import styled from "styled-components";
 export const Container = styled.div`
   ${centerItemsBox}
   margin: 32px 0;
-  min-height: 580px;
+  max-height: 580px;
 `;

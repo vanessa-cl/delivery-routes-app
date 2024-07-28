@@ -1,6 +1,5 @@
-import CreateRoutePage from "@/components/templates/CreateRoutePage/CreateRoutePage";
-
+import RoutesPage from "@/components/templates/RoutesPage/RoutesPage";
 
 export default function Home() {
-  return <CreateRoutePage />
+  return <RoutesPage />;
 }

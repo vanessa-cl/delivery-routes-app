@@ -21,7 +21,7 @@ export const ListWrapper = styled.ul`
   margin: 16px 0;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  height: auto;
   gap: 24px;
   overflow-y: scroll;
 
