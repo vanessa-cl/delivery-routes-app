@@ -4,6 +4,7 @@ import styled from "styled-components";
 export const List = styled.section`
   width: 550px;
   height: 100%;
+  min-height: 580px;
   padding: 20px;
   background-color: var(--dark-gray);
   ${centerItemsBox}

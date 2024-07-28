@@ -1,5 +1,5 @@
-import RoutesPage from "@/components/templates/RoutesPage/RoutesPage";
+import OrdersPage from "@/components/templates/OrdersPage/OrdersPage";
 
 export default function Home() {
-  return <RoutesPage />;
+  return <OrdersPage />;
 }

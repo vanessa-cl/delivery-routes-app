@@ -12,8 +12,21 @@ export const NavLink = styled.div`
   cursor: pointer;
   ${centerItemsBox}
 
-  &:hover,
-  &:active {
+  & a {
+    ${centerItemsBox}
+    width: 100%;
+    height: 100%;
+  }
+
+  &.active {
+    border-right: var(--red-border);
+    border-left: var(--red-border);
+    border-bottom: var(--red-border);
+    background-color: var(--black);
+    color: var(--red);
+  }
+
+  &:hover {
     border-right: var(--red-border);
     border-left: var(--red-border);
     border-bottom: var(--red-border);

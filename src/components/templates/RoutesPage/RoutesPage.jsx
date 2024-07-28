@@ -9,7 +9,7 @@ import { route } from "@/utils/route";
 export default function RoutesPage() {
   return (
     <S.RoutesPage>
-      <PageTitle text="Rota" />
+      <PageTitle text="Rotas" />
       <PageSubtitle text="Visualize aqui o mapa com as rotas dos pedidos. " />
       <Container>
         <Map />

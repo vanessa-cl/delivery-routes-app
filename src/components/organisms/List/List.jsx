@@ -4,8 +4,14 @@ import ListItem from "@/components/molecules/ListItem/ListItem";
 import BasicButton from "@/components/atoms/Button/BasicButton/BasicButton";
 import BackButton from "@/components/atoms/Button/BackButton/BackButton";
 import ListItemText from "@/components/atoms/Text/ListItemText/ListItemText";
+import { useRouter } from "next/router";
+
+const goToHome = (router) => {
+  router.push("/");
+};
 
 const OrdersListView = ({ orders }) => {
+  const router = useRouter();
   return (
     <S.List variant="primary">
       <ListTitle text="Selecione os pedidos que farão parte da próxima rota de entregas:" />
@@ -29,7 +35,12 @@ const OrdersListView = ({ orders }) => {
       <S.ListFooter>
         <ListItemText text="Selecionados: 2" />
         <S.ListButtonWrapper>
-          <BackButton id="back-button" name="back-button" label="Voltar" />
+          <BackButton
+            id="back-button"
+            name="back-button"
+            label="Voltar"
+            onClick={() => goToHome(router)}
+          />
           <BasicButton
             id="create-route-button"
             name="create-route-button"
@@ -43,6 +54,7 @@ const OrdersListView = ({ orders }) => {
 };
 
 const RoutesListView = ({ routes }) => {
+  const router = useRouter();
   return (
     <S.List variant="secondary">
       <ListTitle text="Clique em uma rota para visualizar no mapa:" />
@@ -67,7 +79,12 @@ const RoutesListView = ({ routes }) => {
         })}
       </S.ListWrapper>
       <S.ListEndFooter>
-        <BackButton id="back-button" name="back-button" label="Voltar" />
+        <BackButton
+          id="back-button"
+          name="back-button"
+          label="Voltar"
+          onClick={() => goToHome(router)}
+        />
       </S.ListEndFooter>
     </S.List>
   );
