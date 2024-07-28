@@ -37,9 +37,13 @@ export default createGlobalStyle`
   body, #__next {
     font-family: var(--main-font);
     font-style: normal;
-    height: 100%;
-    width: 100%;
+    height: 100dvh;
     background-color: var(--dark-gray);
+  }
+
+  #__next {
+    display: flex;
+    flex-direction: column;
   }
 
   a {

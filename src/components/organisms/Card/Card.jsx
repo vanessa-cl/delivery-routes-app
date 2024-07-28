@@ -3,7 +3,7 @@ import * as S from "./Card.styles";
 import { ORDER_STATUS } from "@/utils/orderStatus";
 import CardHeader from "@/components/molecules/CardHeader/CardHeader";
 import CardStatus from "@/components/atoms/CardStatus/CardStatus";
-import CardButton from "@/components/atoms/Button/CardButton";
+import CardButton from "@/components/atoms/Button/CardButton/CardButton";
 import CardDetails from "@/components/molecules/CardDetails/CardDetails";
 
 import getStyleVariant from "@/utils/getStyleVariant";
