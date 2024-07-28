@@ -1,9 +1,9 @@
 import * as S from "./OrdersPage.styles";
-import PageSubtitle from "../atoms/Text/PageSubtitle/PageSubtitle";
-import PageTitle from "../atoms/Text/PageTitle/PageTitle";
-import Card from "../organisms/Card/Card";
+import PageSubtitle from "../../atoms/Text/PageSubtitle/PageSubtitle";
+import PageTitle from "../../atoms/Text/PageTitle/PageTitle";
+import Card from "../../organisms/Card/Card";
 import { order } from "@/utils/order";
-import Footer from "../organisms/Footer/Footer";
+import Footer from "../../organisms/Footer/Footer";
 
 export default function OrdersPage() {
   return (

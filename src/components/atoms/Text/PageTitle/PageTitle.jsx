@@ -1,5 +1,5 @@
 import * as S from "./PageTitle.styles";
 
-export default function PageTitle() {
-  return <S.PageTitle>Pedidos</S.PageTitle>
+export default function PageTitle({ text }) {
+  return <S.PageTitle>{text}</S.PageTitle>;
 }

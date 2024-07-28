@@ -2,8 +2,8 @@ import { centerItemsBox } from "@/styles/mixins/box.mixin";
 import styled from "styled-components";
 
 export const List = styled.section`
-  width: 500px;
-  height: 700px;
+  width: 550px;
+  height: 100%;
   padding: 20px;
   background-color: var(--dark-gray);
   ${centerItemsBox}

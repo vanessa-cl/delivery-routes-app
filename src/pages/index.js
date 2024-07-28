@@ -1,5 +1,6 @@
-import List from "@/components/organisms/List/List";
+import CreateRoutePage from "@/components/templates/CreateRoutePage/CreateRoutePage";
+
 
 export default function Home() {
-  return <List listType=""/>
+  return <CreateRoutePage />
 }

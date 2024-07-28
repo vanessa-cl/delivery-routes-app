@@ -1,20 +1,16 @@
-import { useEffect, useState } from "react";
 import * as S from "./List.styles";
-import getStyleVariant from "@/utils/getStyleVariant";
 import ListTitle from "@/components/atoms/Text/ListTitle/ListTitle";
-import { route } from "@/utils/route";
 import ListItem from "@/components/molecules/ListItem/ListItem";
-import { order } from "@/utils/order";
 import BasicButton from "@/components/atoms/Button/BasicButton/BasicButton";
 import BackButton from "@/components/atoms/Button/BackButton/BackButton";
 import ListItemText from "@/components/atoms/Text/ListItemText/ListItemText";
 
-const OrdersListView = () => {
+const OrdersListView = ({ orders }) => {
   return (
     <S.List variant="primary">
       <ListTitle text="Selecione os pedidos que farão parte da próxima rota de entregas:" />
       <S.ListWrapper>
-        {order.map((item, idx) => {
+        {orders.map((item, idx) => {
           return (
             <ListItem
               key={idx}
@@ -46,12 +42,12 @@ const OrdersListView = () => {
   );
 };
 
-const RoutesListView = () => {
+const RoutesListView = ({ routes }) => {
   return (
     <S.List variant="secondary">
       <ListTitle text="Clique em uma rota para visualizar no mapa:" />
       <S.ListWrapper>
-        {route.map((item, idx) => {
+        {routes.map((item, idx) => {
           return (
             <ListItem
               key={idx}
@@ -77,12 +73,10 @@ const RoutesListView = () => {
   );
 };
 
-export default function List({ listType }) {
-  // const [styleVariant, setStyleVariant] = useState("primary");
-
-  // useEffect(() => {
-  //   setStyleVariant(getStyleVariant(order.statusId));
-  // }, [order]);
-
-  return listType === "routes" ? <RoutesListView /> : <OrdersListView />;
+export default function List({ listType, items }) {
+  return listType === "routes" ? (
+    <RoutesListView routes={items} />
+  ) : (
+    <OrdersListView orders={items} />
+  );
 }
