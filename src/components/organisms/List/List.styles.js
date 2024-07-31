@@ -3,9 +3,8 @@ import styled from "styled-components";
 
 export const List = styled.section`
   width: 550px;
-  height: 100%;
-  min-height: 580px;
-  padding: 20px;
+  height: calc(100vh - 185px);
+  padding: 16px;
   background-color: var(--dark-gray);
   ${centerItemsBox}
   flex-direction: column;
@@ -19,16 +18,17 @@ export const List = styled.section`
 export const ListWrapper = styled.ul`
   ${centerItemsBox}
   justify-content: flex-start;
-  margin: 16px 0;
+  margin: 8px 0;
   flex-direction: column;
   width: 100%;
-  height: auto;
-  gap: 24px;
-  overflow-y: scroll;
+  height: 100%;
+  gap: 16px;
+  flex-grow: 1;
+  overflow-y: auto;
 
   ::-webkit-scrollbar,
   ::-moz-scrollbar {
-    width: 10px; /* Largura da barra */
+    width: 10px;
   }
 
   ::-webkit-scrollbar-thumb,

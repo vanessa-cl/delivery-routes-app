@@ -4,11 +4,11 @@ import styled from "styled-components";
 export const NavLink = styled.div`
   background-color: var(--dark-gray);
   font-weight: 500;
-  font-size: 28px;
+  font-size: 20px;
   line-height: 40px;
   color: var(--white);
-  width: 200px;
-  height: 100px;
+  width: 140px;
+  height: 70px;
   cursor: pointer;
   ${centerItemsBox}
 

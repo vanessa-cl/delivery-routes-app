@@ -4,8 +4,8 @@ import styled from "styled-components";
 export const ListItem = styled.li`
   width: 100%;
   height: auto;
-  padding: 8px 18px;
-  background-color: var(--mid-gray);
+  padding: 8px 16px;
+  background-color: var(--gray);
   border-radius: 8px;
   border: 2px solid transparent;
   display: flex;
@@ -29,13 +29,13 @@ export const ListItemFirstRow = styled.div`
 `;
 
 export const ListItemRow = styled(ListItemFirstRow)`
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 `;
 
 export const ListItemBetweenRow = styled(ListItemRow)`
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 `;
 
 export const ListItemColumn = styled(ListItemRow)`
@@ -44,5 +44,5 @@ export const ListItemColumn = styled(ListItemRow)`
 `;
 
 export const ListItemButtonWrapper = styled(ListItemBetweenRow)`
-  margin-top: 16px;
+  margin-top: 8px;
 `;

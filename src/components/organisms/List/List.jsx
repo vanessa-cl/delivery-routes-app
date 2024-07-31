@@ -34,7 +34,7 @@ const OrdersListView = ({ orders }) => {
   return (
     <S.List variant="primary">
       {console.log(allLocations)}
-      <ListTitle text="Selecione os pedidos que farão parte da próxima rota de entregas:" />
+      <ListTitle text="Selecione os pedidos para a próxima rota de entregas:" />
       <S.ListWrapper>
         {allLocations.length > 0 ? (
           allLocations.map((order, idx) => {

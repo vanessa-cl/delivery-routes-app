@@ -8,6 +8,10 @@ export const OrdersPage = styled.main`
 
 export const CardsContainer = styled.div`
   ${centerItemsBox}
-  justify-content: space-between;
-  margin: 32px 0;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin: 16px 0 8px 0;
+  gap: 5%;
+  flex-wrap: wrap;
+  flex-grow: 1;
 `;

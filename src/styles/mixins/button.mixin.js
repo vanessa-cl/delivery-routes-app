@@ -8,7 +8,7 @@ export const button = css`
   font-size: 16px;
   font-family: "Outfit";
   font-weight: 500;
-  width: 156px;
+  width: 140px;
   height: 38px;
   cursor: pointer;
 `;

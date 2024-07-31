@@ -2,7 +2,7 @@ import { centerItemsBox } from "@/styles/mixins/box.mixin";
 import styled from "styled-components";
 
 export const CardDetails = styled.div`
-  padding: 16px;
+  padding: 8px 16px;
   height: 100%;
   display: flex;
   flex-direction: column;

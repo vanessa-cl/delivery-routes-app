@@ -9,11 +9,11 @@ export const CardButton = styled.button`
   border-radius: ${(props) =>
     props.variant === "primary" ? "0px 0px 0px 16px" : "0px 0px 18px 0px"};
   border: none;
-  font-size: 24px;
+  font-size: 20px;
   font-family: "Outfit";
   font-weight: 500;
   width: 180px;
-  height: 60px;
+  height: 50px;
   cursor: pointer;
   ${centerItemsBox}
 

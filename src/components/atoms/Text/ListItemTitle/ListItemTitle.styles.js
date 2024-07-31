@@ -5,6 +5,6 @@ export const ListItemTitle = styled.h3`
   ${commonText({
     color: (props) =>
       props.variant === "primary" ? "var(--red)" : "var(--orange)",
-    fontSize: "20px",
+    fontSize: "18px",
   })}
 `;

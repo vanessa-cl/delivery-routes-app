@@ -4,6 +4,7 @@ import styled from "styled-components";
 export const ListTitle = styled.p`
   ${commonText({
     color: "var(--white)",
-    fontSize: "24px",
+    fontSize: "18px",
   })}
+  text-align: left;
 `;

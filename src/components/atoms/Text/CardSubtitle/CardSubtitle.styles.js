@@ -5,6 +5,6 @@ export const CardSubtitle = styled.h2`
   ${commonText({
     color: (props) =>
       props.variant === "primary" ? "var(--red)" : "var(--orange)",
-    fontSize: "24px",
+    fontSize: "20px",
   })}
 `;
