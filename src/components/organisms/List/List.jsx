@@ -5,15 +5,34 @@ import BasicButton from "@/components/atoms/Button/BasicButton/BasicButton";
 import BackButton from "@/components/atoms/Button/BackButton/BackButton";
 import ListItemText from "@/components/atoms/Text/ListItemText/ListItemText";
 import { useRouter } from "next/router";
+import useOrders from "@/hooks/useOrders";
+import { useContext, useEffect } from "react";
+import { MapWrapperContext } from "@/context/MapWrapperContext";
 
 const goToHome = (router) => {
   router.push("/");
 };
 
 const OrdersListView = ({ orders }) => {
+  const { allLocations, setAllOrdersLocations } = useOrders();
+  const { updateCenter, updateMarkers } = useContext(MapWrapperContext);
   const router = useRouter();
+
+  useEffect(() => {
+    if (allLocations.length < 1) {
+      setAllOrdersLocations(orders);
+    }
+  }, [orders, allLocations, setAllOrdersLocations]);
+
+  useEffect(() => {
+    if (allLocations.length > 0) {
+      updateMarkers(allLocations);
+    }
+  }, [allLocations, updateMarkers]);
+
   return (
     <S.List variant="primary">
+      {console.log(allLocations)}
       <ListTitle text="Selecione os pedidos que farão parte da próxima rota de entregas:" />
       <S.ListWrapper>
         {orders.map((item, idx) => {

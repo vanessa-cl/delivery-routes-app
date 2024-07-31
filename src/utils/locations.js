@@ -1,4 +1,4 @@
-export const order = [
+export const locations = [
   {
     id: 123,
     statusId: 1,
@@ -11,6 +11,7 @@ export const order = [
     address:
       "Av. Sérgio Vieira de Melo, 3150 - Zabelê, Vitória da Conquista - BA, 45078-300",
     value: 25.0,
+    location: { lat: Number(-14.8418397), lng: Number(-40.8770786) },
   },
   {
     id: 124,
@@ -24,17 +25,6 @@ export const order = [
     address:
       "Av. Olívia Flores, 3900 - Universidade, Vitória da Conquista - BA, 45031-000",
     value: 25.0,
+    location: { lat: Number(-14.8767494), lng: Number(-40.8169811) },
   },
-  // {
-  //   id: 123,
-  //   statusId: 3,
-  //   clientName: "Fulaninha",
-  //   details: {
-  //     items: ["1 X-Tudo", "1 Coca-Cola Lata"],
-  //     observations: null,
-  //   },
-  //   distance: 13,
-  //   address: "Rua Ipsum Lorem Lorem, número 789, em frente a lotérica",
-  //   value: 25.0,
-  // },
 ];
