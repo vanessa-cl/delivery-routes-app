@@ -6,9 +6,9 @@ function MapWrapperProvider({ children }) {
   const [center, setCenter] = useState(null);
   const [markers, setMarkers] = useState([]);
 
-  const updateCenter = (props) => {
+  const updateCenter = useCallback((props) => {
     setCenter(props);
-  };
+  }, []);
 
   const updateMarkers = useCallback((props) => {
     setMarkers(props);
@@ -18,6 +18,7 @@ function MapWrapperProvider({ children }) {
     <MapWrapperContext.Provider
       value={{ center, markers, updateCenter, updateMarkers }}
     >
+      {console.log(center)}
       {children}
     </MapWrapperContext.Provider>
   );

@@ -7,10 +7,8 @@ import { MapWrapperContext } from "@/context/MapWrapperContext";
 
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
-const center = { lat: -14.8418397, lng: -40.8770786 }
-
 export default function MapWrapper() {
-  const { markers } = useContext(MapWrapperContext);
+  const { center, markers } = useContext(MapWrapperContext);
 
   return (
     <S.MapWrapper>

@@ -26,30 +26,36 @@ const OrdersListView = ({ orders }) => {
 
   useEffect(() => {
     if (allLocations.length > 0) {
+      updateCenter(allLocations[0].location);
       updateMarkers(allLocations);
     }
-  }, [allLocations, updateMarkers]);
+  }, [allLocations, updateMarkers, updateCenter]);
 
   return (
     <S.List variant="primary">
       {console.log(allLocations)}
       <ListTitle text="Selecione os pedidos que farão parte da próxima rota de entregas:" />
       <S.ListWrapper>
-        {orders.map((item, idx) => {
-          return (
-            <ListItem
-              key={idx}
-              id={item.id}
-              itemType="order"
-              title="Pedido"
-              distance={item.distance}
-              details={{
-                address: item.address,
-              }}
-              variant="primary"
-            />
-          );
-        })}
+        {allLocations.length > 0 ? (
+          allLocations.map((order, idx) => {
+            return (
+              <ListItem
+                key={idx}
+                id={order.id}
+                itemType="order"
+                title="Pedido"
+                distance={order.distance}
+                details={{
+                  address: order.address,
+                }}
+                variant="primary"
+                onClick={() => updateCenter(order.location)}
+              />
+            );
+          })
+        ) : (
+          <></>
+        )}
       </S.ListWrapper>
       <S.ListFooter>
         <ListItemText text="Selecionados: 2" />
