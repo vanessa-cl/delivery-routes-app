@@ -19,7 +19,13 @@ const OrdersListView = ({ orders }) => {
   const { allLocations, setAllOrdersLocations } = useOrders();
   const { updateCenter, updateMarkers, updatePolylines } =
     useContext(MapWrapperContext);
-  const { setRoutePolylines } = useRoutes();
+  const {
+    setRoutePolylines,
+    createRoute,
+    routes,
+    completedRoute,
+    setRouteData,
+  } = useRoutes();
   const router = useRouter();
 
   useEffect(() => {
@@ -37,11 +43,11 @@ const OrdersListView = ({ orders }) => {
   const handleOrderClick = (order) => {
     console.log(`Pedido clicado: ${order.id}`);
     if (selectedOrders.includes(order)) {
-      const teste = selectedOrders.filter((item) => {
+      const updatedOrders = selectedOrders.filter((item) => {
         return item.id !== order.id;
       });
-      updatePolylines([]);
-      return setSelectedOrders(teste);
+      // updatePolylines([]);
+      return setSelectedOrders(updatedOrders);
     }
 
     setSelectedOrders([...selectedOrders, order]);
@@ -50,6 +56,7 @@ const OrdersListView = ({ orders }) => {
   return (
     <S.List variant="primary">
       {console.log(selectedOrders)}
+      {console.log(completedRoute)}
       <ListTitle text="Selecione os pedidos para a próxima rota de entregas:" />
       <S.ListWrapper>
         {allLocations.length > 0 ? (
@@ -69,7 +76,6 @@ const OrdersListView = ({ orders }) => {
                 onClick={() => {
                   handleOrderClick(order);
                   updateCenter(order.location);
-                  setRoutePolylines(order);
                 }}
               />
             );
@@ -92,6 +98,9 @@ const OrdersListView = ({ orders }) => {
             name="create-route-button"
             label="Criar rota"
             variant="primary"
+            onClick={() => {
+              createRoute(selectedOrders);
+            }}
           />
         </S.ListButtonWrapper>
       </S.ListFooter>

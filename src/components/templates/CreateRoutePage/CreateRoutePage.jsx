@@ -10,14 +10,13 @@ import { useContext } from "react";
 import { MapWrapperContext } from "@/context/MapWrapperContext";
 
 export default function CreateRoutePage() {
-  const { polylines } = useContext(MapWrapperContext);
+  // const { polylines } = useContext(MapWrapperContext);
   return (
     <S.CreateRoutePage>
       <PageTitle text="Criar nova rota" />
       <PageSubtitle text="Insira os novos pedidos em uma rota para entrega." />
       <Container>
-        {/* {console.log(polylines)} */}
-        <MapWrapper polylines={polylines} />
+        <MapWrapper polylines={[]} />
         <List listType="order" items={order} />
       </Container>
     </S.CreateRoutePage>

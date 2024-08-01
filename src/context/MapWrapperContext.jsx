@@ -1,5 +1,5 @@
 import { createContext, useCallback, useEffect, useState } from "react";
-import { branch } from "@/utils/branch";
+import { branch1, branch2 } from "@/utils/branch";
 
 export const MapWrapperContext = createContext(null);
 
@@ -22,13 +22,16 @@ function MapWrapperProvider({ children }) {
 
   useEffect(() => {
     if (!center) {
-      setCenter(branch.geometry.location);
+      setCenter(branch1.geometry.location);
     }
   }, [center]);
 
   useEffect(() => {
     if (markers.length < 1) {
-      setMarkers([{ id: "Filial", location: branch.geometry.location }]);
+      setMarkers([
+        { id: "Filial Olívia", location: branch1.geometry.location },
+        { id: "Filial Candeias", location: branch2.geometry.location },
+      ]);
     }
   }, [markers]);
 
