@@ -33,10 +33,10 @@ function MapWrapperProvider({ children }) {
 
   useEffect(() => {
     if (markers.length < 1) {
-      setMarkers([
-        { id: "Filial Olívia", location: branch1.geometry.location },
-        { id: "Filial Candeias", location: branch2.geometry.location },
-      ]);
+      // setMarkers([
+      //   { id: "Filial Olívia", location: branch1.geometry.location },
+      //   { id: "Filial Candeias", location: branch2.geometry.location },
+      // ]);
     }
   }, [markers]);
 
