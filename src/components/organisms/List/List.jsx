@@ -65,7 +65,7 @@ const OrdersListView = ({ orders }) => {
                 id={order.id}
                 itemType="order"
                 title="Pedido"
-                distance={order.distance}
+                // distance={order.distance}
                 details={{
                   address: order.address,
                 }}

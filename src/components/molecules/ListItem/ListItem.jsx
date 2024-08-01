@@ -52,21 +52,21 @@ export default function ListItem({
   bestRoute,
 }) {
   const itemClasses = classNames({
-    'checked': checked,
-    'bestRoute': bestRoute,
+    checked: checked,
+    bestRoute: bestRoute,
   });
   return (
-    <S.ListItem
-      variant={variant}
-      onClick={onClick}
-      className={itemClasses}
-    >
+    <S.ListItem variant={variant} onClick={onClick} className={itemClasses}>
       <S.ListItemBetweenRow>
         <ListItemTitle text={`${title} N°${id}`} variant={variant} />
-        <S.ListItemFirstRow>
-          <ListItemText text="Distância total:" variant={variant} />
-          <ListItemText text={`${(distance / 1000).toFixed(2)}km`} />
-        </S.ListItemFirstRow>
+        {distance ? (
+          <S.ListItemFirstRow>
+            <ListItemText text="Distância total:" variant={variant} />
+            <ListItemText text={`${(distance / 1000).toFixed(2)}km`} />
+          </S.ListItemFirstRow>
+        ) : (
+          <></>
+        )}
       </S.ListItemBetweenRow>
       {itemType === "route" && details ? (
         <RouteDetails details={{ ...details }} />
