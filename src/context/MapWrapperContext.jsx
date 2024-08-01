@@ -7,6 +7,7 @@ function MapWrapperProvider({ children }) {
   const [center, setCenter] = useState(null);
   const [markers, setMarkers] = useState([]);
   const [polylines, setPolylines] = useState([]);
+  const [routes, setRoutes] = useState([]);
 
   const updateCenter = useCallback((props) => {
     setCenter(props);
@@ -18,6 +19,10 @@ function MapWrapperProvider({ children }) {
 
   const updatePolylines = useCallback((props) => {
     setPolylines(props);
+  }, []);
+
+  const updateRoutes = useCallback((props) => {
+    setRoutes(props);
   }, []);
 
   useEffect(() => {
@@ -41,13 +46,16 @@ function MapWrapperProvider({ children }) {
         center,
         markers,
         polylines,
+        routes,
         updateCenter,
         updateMarkers,
         updatePolylines,
+        updateRoutes,
       }}
     >
       {/* {console.log(center)}
       {console.log(markers)} */}
+      {console.log(routes)}
       {children}
     </MapWrapperContext.Provider>
   );

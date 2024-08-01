@@ -1,4 +1,3 @@
-import { directionsResults } from "./directionsResults"
 import { order } from "./order"
 
 export const completedRoute = [
@@ -10,6 +9,6 @@ export const completedRoute = [
     cost: 25.0,
     fuel: 1.5,
     approximateTime: 40,
-    routes: directionsResults
+    
   },
 ]

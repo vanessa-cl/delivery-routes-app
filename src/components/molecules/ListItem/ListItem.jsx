@@ -33,7 +33,7 @@ const RouteDetails = ({ details: { orders, cost, fuel, approximateTime } }) => {
       </S.ListItemRow>
       <S.ListItemRow>
         <ListItemText text="Entrega aproximada em até:" variant="secondary" />
-        <ListItemText text={`${approximateTime}min`} />
+        <ListItemText text={`${approximateTime.toFixed(2)}min`} />
       </S.ListItemRow>
     </>
   );
@@ -59,10 +59,10 @@ export default function ListItem({
         <ListItemTitle text={`${title} N°${id}`} variant={variant} />
         <S.ListItemFirstRow>
           <ListItemText text="Distância total:" variant={variant} />
-          <ListItemText text={`${distance}km`} />
+          <ListItemText text={`${(distance / 1000).toFixed(2)}km`} />
         </S.ListItemFirstRow>
       </S.ListItemBetweenRow>
-      {itemType === "route" ? (
+      {itemType === "route" && details ? (
         <RouteDetails details={{ ...details }} />
       ) : (
         <OrderDetails details={{ ...details }} />

@@ -55,8 +55,6 @@ const OrdersListView = ({ orders }) => {
 
   return (
     <S.List variant="primary">
-      {console.log(selectedOrders)}
-      {console.log(completedRoute)}
       <ListTitle text="Selecione os pedidos para a próxima rota de entregas:" />
       <S.ListWrapper>
         {allLocations.length > 0 ? (
@@ -100,6 +98,7 @@ const OrdersListView = ({ orders }) => {
             variant="primary"
             onClick={() => {
               createRoute(selectedOrders);
+              router.push("/rotas");
             }}
           />
         </S.ListButtonWrapper>
@@ -108,30 +107,41 @@ const OrdersListView = ({ orders }) => {
   );
 };
 
-const RoutesListView = ({ routes }) => {
+const RoutesListView = () => {
   const router = useRouter();
+  const { setRouteData, routes, getRoutePolylines } = useRoutes();
+
+  useEffect(() => {
+    // setRouteData();
+  }, []);
+
   return (
     <S.List variant="secondary">
       <ListTitle text="Clique em uma rota para visualizar no mapa:" />
       <S.ListWrapper>
-        {routes.map((item, idx) => {
-          return (
-            <ListItem
-              key={idx}
-              id={item.id}
-              itemType="route"
-              title="Rota"
-              distance={item.totalDistance}
-              details={{
-                orders: item.orders,
-                cost: item.cost,
-                fuel: item.fuel,
-                approximateTime: item.approximateTime,
-              }}
-              variant="secondary"
-            />
-          );
-        })}
+        {routes.length > 0 ? (
+          routes.map((route, idx) => {
+            return (
+              <ListItem
+                key={idx}
+                id={route.id}
+                itemType="route"
+                title="Rota"
+                distance={route.totalDistance}
+                details={{
+                  orders: [],
+                  cost: route.cost,
+                  fuel: route.fuel,
+                  approximateTime: route.approximateTime,
+                }}
+                variant="secondary"
+                onClick={() => getRoutePolylines(route)}
+              />
+            );
+          })
+        ) : (
+          <></>
+        )}
       </S.ListWrapper>
       <S.ListEndFooter>
         <BackButton
