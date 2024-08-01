@@ -46,10 +46,15 @@ export default function ListItem({
   distance,
   details,
   variant,
+  checked,
   onClick,
 }) {
   return (
-    <S.ListItem variant={variant} onClick={onClick}>
+    <S.ListItem
+      variant={variant}
+      onClick={onClick}
+      className={checked ? "checked" : ""}
+    >
       <S.ListItemBetweenRow>
         <ListItemTitle text={`${title} N°${id}`} variant={variant} />
         <S.ListItemFirstRow>

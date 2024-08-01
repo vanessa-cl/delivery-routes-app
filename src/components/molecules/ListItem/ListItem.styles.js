@@ -12,13 +12,20 @@ export const ListItem = styled.li`
   flex-direction: column;
   align-items: flex-start;
 
+  &.checked {
+    background-color: var(--black) !important;
+    border: ${(props) =>
+      props.variant === "primary"
+        ? "var(--red-border)"
+        : "var(--orange-border)"};
+  }
+
   &:hover {
     background-color: var(--black);
     border: ${(props) =>
       props.variant === "primary"
         ? "var(--red-border)"
         : "var(--orange-border)"};
-    
   }
 `;
 

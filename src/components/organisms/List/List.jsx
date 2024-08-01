@@ -6,16 +6,20 @@ import BackButton from "@/components/atoms/Button/BackButton/BackButton";
 import ListItemText from "@/components/atoms/Text/ListItemText/ListItemText";
 import { useRouter } from "next/router";
 import useOrders from "@/hooks/useOrders";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MapWrapperContext } from "@/context/MapWrapperContext";
+import useRoutes from "@/hooks/useRoutes";
 
 const goToHome = (router) => {
   router.push("/");
 };
 
 const OrdersListView = ({ orders }) => {
+  const [selectedOrders, setSelectedOrders] = useState([]);
   const { allLocations, setAllOrdersLocations } = useOrders();
-  const { updateCenter, updateMarkers } = useContext(MapWrapperContext);
+  const { updateCenter, updateMarkers, updatePolylines } =
+    useContext(MapWrapperContext);
+  const { setRoutePolylines } = useRoutes();
   const router = useRouter();
 
   useEffect(() => {
@@ -26,14 +30,26 @@ const OrdersListView = ({ orders }) => {
 
   useEffect(() => {
     if (allLocations.length > 0) {
-      updateCenter(allLocations[0].location);
-      updateMarkers(allLocations);
+      updateMarkers((markers) => [...markers, ...allLocations]);
     }
   }, [allLocations, updateMarkers, updateCenter]);
 
+  const handleOrderClick = (order) => {
+    console.log(`Pedido clicado: ${order.id}`);
+    if (selectedOrders.includes(order)) {
+      const teste = selectedOrders.filter((item) => {
+        return item.id !== order.id;
+      });
+      updatePolylines([]);
+      return setSelectedOrders(teste);
+    }
+
+    setSelectedOrders([...selectedOrders, order]);
+  };
+
   return (
     <S.List variant="primary">
-      {console.log(allLocations)}
+      {console.log(selectedOrders)}
       <ListTitle text="Selecione os pedidos para a próxima rota de entregas:" />
       <S.ListWrapper>
         {allLocations.length > 0 ? (
@@ -49,7 +65,12 @@ const OrdersListView = ({ orders }) => {
                   address: order.address,
                 }}
                 variant="primary"
-                onClick={() => updateCenter(order.location)}
+                checked={selectedOrders.includes(order)}
+                onClick={() => {
+                  handleOrderClick(order);
+                  updateCenter(order.location);
+                  setRoutePolylines(order);
+                }}
               />
             );
           })
@@ -58,7 +79,7 @@ const OrdersListView = ({ orders }) => {
         )}
       </S.ListWrapper>
       <S.ListFooter>
-        <ListItemText text="Selecionados: 2" />
+        <ListItemText text={`Selecionados: ${selectedOrders.length}`} />
         <S.ListButtonWrapper>
           <BackButton
             id="back-button"
