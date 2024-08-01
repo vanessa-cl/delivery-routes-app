@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+// import { background } from "../../public/images/iStock-1215384892.jpg";
 
 export default createGlobalStyle`
   :root {
@@ -47,6 +48,9 @@ export default createGlobalStyle`
   #__next {
     display: flex;
     flex-direction: column;
+    background-image: url("/images/iStock-1215384892.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 
   a {

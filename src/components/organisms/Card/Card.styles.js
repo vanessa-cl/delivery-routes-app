@@ -9,6 +9,7 @@ export const Card = styled.section`
   border: ${(props) =>
     props.variant === "primary" ? "var(--red-border)" : "var(--orange-border)"};
   border-radius: 20px;
+  background-color: var(--dark-gray);
 `;
 
 export const CardButtonWrapper = styled.div`
