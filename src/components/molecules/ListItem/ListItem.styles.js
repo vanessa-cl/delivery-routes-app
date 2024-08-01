@@ -27,6 +27,11 @@ export const ListItem = styled.li`
         ? "var(--red-border)"
         : "var(--orange-border)"};
   }
+
+  &.bestRoute {
+    background-color: var(--black) !important;
+    border: var(--green-border);
+  }
 `;
 
 export const ListItemFirstRow = styled.div`

@@ -18,6 +18,8 @@ export default createGlobalStyle`
     --main-font: 'Outfit', sans-serif;
     --red-border: 2px solid var(--red);
     --orange-border: 2px solid var(--orange);
+    --green: #228B22;
+    --green-border: 2px solid var(--green);
   }
 
   *,

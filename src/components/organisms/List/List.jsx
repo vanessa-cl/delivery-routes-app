@@ -109,11 +109,13 @@ const OrdersListView = ({ orders }) => {
 
 const RoutesListView = () => {
   const router = useRouter();
-  const { setRouteData, routes, getRoutePolylines } = useRoutes();
+  const { getBestRoute, routes, getRoutePolylines } = useRoutes();
+  const { updateBestRoute, bestRoute } = useContext(MapWrapperContext);
 
   useEffect(() => {
-    // setRouteData();
-  }, []);
+    const findBestRoute = getBestRoute(routes);
+    updateBestRoute(findBestRoute[0]);
+  }, [getBestRoute, routes, updateBestRoute]);
 
   return (
     <S.List variant="secondary">
@@ -136,6 +138,7 @@ const RoutesListView = () => {
                 }}
                 variant="secondary"
                 onClick={() => getRoutePolylines(route)}
+                bestRoute={bestRoute.id === route.id}
               />
             );
           })

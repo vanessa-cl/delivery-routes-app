@@ -4,6 +4,7 @@ import ListItemTitle from "../../atoms/Text/ListItemTitle/ListItemTitle";
 import * as S from "./ListItem.styles";
 import BasicButton from "@/components/atoms/Button/BasicButton/BasicButton";
 import DeleteIconButton from "@/components/atoms/Button/DeleteIconButton/DeleteIconButton";
+import classNames from "classnames";
 
 const OrderDetails = ({ details: { address } }) => {
   return (
@@ -48,12 +49,17 @@ export default function ListItem({
   variant,
   checked,
   onClick,
+  bestRoute,
 }) {
+  const itemClasses = classNames({
+    'checked': checked,
+    'bestRoute': bestRoute,
+  });
   return (
     <S.ListItem
       variant={variant}
       onClick={onClick}
-      className={checked ? "checked" : ""}
+      className={itemClasses}
     >
       <S.ListItemBetweenRow>
         <ListItemTitle text={`${title} N°${id}`} variant={variant} />

@@ -1,7 +1,7 @@
 export const order = [
   {
     id: 123,
-    statusId: 1,
+    statusId: 2,
     clientName: "Fulaninha",
     details: {
       items: ["1 X-Tudo", "1 Coca-Cola Lata"],

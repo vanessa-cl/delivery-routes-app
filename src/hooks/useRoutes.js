@@ -2,7 +2,7 @@ import { MapWrapperContext } from "@/context/MapWrapperContext";
 import { geocodingService } from "@/services/GeocodingService";
 import { branch1, branch2 } from "@/utils/branch";
 import { routeBranch1, routeBranch2 } from "@/utils/routeBranches";
-import { useContext, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 
 const fuelPerL = 49.1;
 
@@ -29,19 +29,21 @@ export default function useRoutes() {
       };
     });
     const distance = getTotalDistance(format);
-
-    const totalFuel = getFuel(distance);
+    const totalFuel = Number(getFuel(distance).toFixed(2));
+    const cost = Number(getTotalCost(totalFuel).toFixed(2));
     const totalTime = getTotalApproximateTime(format);
 
     const formattedData = {
       id: route.id,
       totalDistance: distance,
-      cost: getTotalCost(totalFuel).toFixed(2),
-      fuel: totalFuel.toFixed(2),
+      cost: cost,
+      fuel: totalFuel,
       approximateTime: totalTime,
       details: format,
       orders: orders,
+      weight: calcRouteWeight(cost, totalFuel, distance, totalTime),
     };
+
     updateRoutes((routes) => [...routes, formattedData]);
   };
 
@@ -88,9 +90,19 @@ export default function useRoutes() {
     return minutes + remainedSeconds / 60;
   };
 
+  const getBestRoute = useCallback(() => {
+    return routes.sort((a, b) => a.weight - b.weight);
+  }, [routes]);
+
+  const calcRouteWeight = (cost, fuel, distance, approximateTime) => {
+    return (cost + fuel + distance + approximateTime) / 4;
+  };
+
   return {
     createRoute,
     routes,
     getRoutePolylines,
+    calcRouteWeight,
+    getBestRoute,
   };
 }
