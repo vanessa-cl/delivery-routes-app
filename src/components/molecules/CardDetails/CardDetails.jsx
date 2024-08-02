@@ -2,6 +2,7 @@ import CardSubtitle from "@/components/atoms/Text/CardSubtitle/CardSubtitle";
 import * as S from "./CardDetails.styles";
 import CardText from "@/components/atoms/Text/CardText/CardText";
 import CardTotalValue from "../CardTotalValue/CardTotalValue";
+import CardLink from "@/components/atoms/Text/CardLink/CardLink";
 
 export default function CardDetails({ order, variant }) {
   return (
@@ -29,7 +30,7 @@ export default function CardDetails({ order, variant }) {
         </S.CardDetailsColumn>
         <S.CardDetailsRow>
           <CardSubtitle text="Rota selecionada:" variant={variant} />
-          <CardText text="Ver no mapa" />
+          <CardLink id="routes-page" href="/rotas" label="Ver no mapa" />
         </S.CardDetailsRow>
       </S.CardDetailsGroup>
       <CardTotalValue value={100} variant={variant} />

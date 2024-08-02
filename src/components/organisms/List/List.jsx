@@ -108,19 +108,26 @@ const OrdersListView = ({ orders }) => {
 const RoutesListView = () => {
   const router = useRouter();
   const { getBestRoute, routes, getRoutePolylines } = useRoutes();
-  const { updateBestRoute, bestRoute, updatePolylines } =
-    useContext(MapWrapperContext);
+  const { updateBestRoute, bestRoute } = useContext(MapWrapperContext);
 
   useEffect(() => {
+    if (!(routes.length > 0)) {
+      return;
+    }
     const findBestRoute = getBestRoute(routes);
     updateBestRoute(findBestRoute[0]);
-    console.log(findBestRoute);
     getRoutePolylines(findBestRoute[0]);
   }, [getBestRoute, routes, updateBestRoute, getRoutePolylines]);
 
   return (
     <S.List variant="secondary">
-      <ListTitle text="Clique em uma rota para visualizar no mapa:" />
+      <ListTitle
+        text={
+          routes.length > 0
+            ? "Clique em uma rota para visualizar no mapa:"
+            : "Nenhuma rota criada para visualização."
+        }
+      />
       <S.ListWrapper>
         {routes.length > 0 ? (
           routes.map((route, idx) => {
