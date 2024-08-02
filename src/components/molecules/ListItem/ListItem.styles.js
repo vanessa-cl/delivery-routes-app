@@ -1,4 +1,5 @@
 import { centerItemsBox } from "@/styles/mixins/box.mixin";
+import { commonText } from "@/styles/mixins/text.mixin";
 import styled from "styled-components";
 
 export const ListItem = styled.li`
@@ -57,4 +58,8 @@ export const ListItemColumn = styled(ListItemRow)`
 
 export const ListItemButtonWrapper = styled(ListItemBetweenRow)`
   margin-top: 8px;
+`;
+
+export const BestRouteText = styled.p`
+  ${commonText({ color: "var(--green)", fontSize: "18px" })}
 `;

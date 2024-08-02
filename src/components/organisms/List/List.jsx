@@ -64,8 +64,6 @@ const OrdersListView = ({ orders }) => {
                 key={idx}
                 id={order.id}
                 itemType="order"
-                title="Pedido"
-                // distance={order.distance}
                 details={{
                   address: order.address,
                 }}
@@ -110,12 +108,15 @@ const OrdersListView = ({ orders }) => {
 const RoutesListView = () => {
   const router = useRouter();
   const { getBestRoute, routes, getRoutePolylines } = useRoutes();
-  const { updateBestRoute, bestRoute } = useContext(MapWrapperContext);
+  const { updateBestRoute, bestRoute, updatePolylines } =
+    useContext(MapWrapperContext);
 
   useEffect(() => {
     const findBestRoute = getBestRoute(routes);
     updateBestRoute(findBestRoute[0]);
-  }, [getBestRoute, routes, updateBestRoute]);
+    console.log(findBestRoute);
+    getRoutePolylines(findBestRoute[0]);
+  }, [getBestRoute, routes, updateBestRoute, getRoutePolylines]);
 
   return (
     <S.List variant="secondary">
@@ -128,13 +129,12 @@ const RoutesListView = () => {
                 key={idx}
                 id={route.id}
                 itemType="route"
-                title="Rota"
-                distance={route.totalDistance}
                 details={{
-                  orders: [],
+                  orders: route.orders,
                   cost: route.cost,
                   fuel: route.fuel,
                   approximateTime: route.approximateTime,
+                  distance: route.totalDistance,
                 }}
                 variant="secondary"
                 onClick={() => getRoutePolylines(route)}

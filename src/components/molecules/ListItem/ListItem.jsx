@@ -5,21 +5,40 @@ import * as S from "./ListItem.styles";
 import BasicButton from "@/components/atoms/Button/BasicButton/BasicButton";
 import DeleteIconButton from "@/components/atoms/Button/DeleteIconButton/DeleteIconButton";
 import classNames from "classnames";
+import Checkbox from "@/components/atoms/Checkbox/Checkbox";
 
-const OrderDetails = ({ details: { address } }) => {
+const OrderDetails = ({ id, checked, details: { address }, variant }) => {
   return (
-    <S.ListItemColumn>
-      <ListItemText text="Endereço:" variant="primary" />
-      <ListItemText text={address} />
-    </S.ListItemColumn>
+    <>
+      <S.ListItemBetweenRow>
+        <ListItemTitle text={`Pedido N°${id}`} variant={variant} />
+        <Checkbox checked={checked} />
+      </S.ListItemBetweenRow>
+      <S.ListItemColumn>
+        <ListItemText text="Endereço:" variant="primary" />
+        <ListItemText text={address} />
+      </S.ListItemColumn>
+    </>
   );
 };
 
-const RouteDetails = ({ details: { orders, cost, fuel, approximateTime } }) => {
+const RouteDetails = ({
+  id,
+  bestRoute,
+  details: { orders, cost, fuel, approximateTime, distance },
+  variant,
+}) => {
   const filteredOrdersIds = orders.map((order) => `N°${order.id}`).join(", ");
 
   return (
     <>
+      <S.ListItemBetweenRow>
+        <ListItemTitle text={`Rota N°${id}`} variant={variant} />
+        <S.ListItemFirstRow>
+          <ListItemText text="Distância total:" variant={variant} />
+          <ListItemText text={`${(distance / 1000).toFixed(2)}km`} />
+        </S.ListItemFirstRow>
+      </S.ListItemBetweenRow>
       <S.ListItemRow>
         <ListItemText text="Pedidos:" variant="secondary" />
         <ListItemText text={filteredOrdersIds} />
@@ -36,6 +55,20 @@ const RouteDetails = ({ details: { orders, cost, fuel, approximateTime } }) => {
         <ListItemText text="Entrega aproximada em até:" variant="secondary" />
         <ListItemText text={`${approximateTime.toFixed(2)}min`} />
       </S.ListItemRow>
+      {bestRoute ? (
+        <S.BestRouteText>Melhor trajeto selecionado</S.BestRouteText>
+      ) : (
+        <></>
+      )}
+      <S.ListItemButtonWrapper>
+        <DeleteIconButton />
+        <BasicButton
+          id="dispatch-route-button"
+          name="dispatch-route-button"
+          label="Despachar"
+          variant="secondary"
+        />
+      </S.ListItemButtonWrapper>
     </>
   );
 };
@@ -43,8 +76,6 @@ const RouteDetails = ({ details: { orders, cost, fuel, approximateTime } }) => {
 export default function ListItem({
   id,
   itemType,
-  title,
-  distance,
   details,
   variant,
   checked,
@@ -52,39 +83,30 @@ export default function ListItem({
   bestRoute,
 }) {
   const itemClasses = classNames({
-    checked: checked,
-    bestRoute: bestRoute,
+    checked,
+    bestRoute,
   });
   return (
-    <S.ListItem variant={variant} onClick={onClick} className={itemClasses}>
-      <S.ListItemBetweenRow>
-        <ListItemTitle text={`${title} N°${id}`} variant={variant} />
-        {distance ? (
-          <S.ListItemFirstRow>
-            <ListItemText text="Distância total:" variant={variant} />
-            <ListItemText text={`${(distance / 1000).toFixed(2)}km`} />
-          </S.ListItemFirstRow>
-        ) : (
-          <></>
-        )}
-      </S.ListItemBetweenRow>
+    <S.ListItem
+      variant={variant}
+      onClick={onClick}
+      className={itemClasses}
+      aria-checked={checked}
+    >
       {itemType === "route" && details ? (
-        <RouteDetails details={{ ...details }} />
+        <RouteDetails
+          id={id}
+          bestRoute={bestRoute}
+          details={{ ...details }}
+          variant={variant}
+        />
       ) : (
-        <OrderDetails details={{ ...details }} />
-      )}
-      {itemType === "route" ? (
-        <S.ListItemButtonWrapper>
-          <DeleteIconButton />
-          <BasicButton
-            id="dispatch-route-button"
-            name="dispatch-route-button"
-            label="Despachar"
-            variant="secondary"
-          />
-        </S.ListItemButtonWrapper>
-      ) : (
-        <></>
+        <OrderDetails
+          id={id}
+          checked={checked}
+          details={{ ...details }}
+          variant={variant}
+        />
       )}
     </S.ListItem>
   );

@@ -2,11 +2,12 @@ import { centerItemsBox } from "@/styles/mixins/box.mixin";
 import styled from "styled-components";
 
 export const List = styled.section`
-  width: 550px;
-  height: calc(100vh - 185px);
+  width: 500px;
+  height: 100%;
   padding: 16px;
   background-color: var(--dark-gray);
   ${centerItemsBox}
+  align-items: flex-start;
   flex-direction: column;
   justify-content: space-between;
   border: ${(props) =>

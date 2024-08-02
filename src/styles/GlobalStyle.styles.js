@@ -21,6 +21,8 @@ export default createGlobalStyle`
     --orange-border: 2px solid var(--orange);
     --green: #228B22;
     --green-border: 2px solid var(--green);
+    --main-box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
   }
 
   *,
@@ -42,15 +44,6 @@ export default createGlobalStyle`
     font-family: var(--main-font);
     font-style: normal;
     height: 100dvh;
-    background-color: var(--dark-gray);
-  }
-
-  #__next {
-    display: flex;
-    flex-direction: column;
-    background-image: url("/images/iStock-1215384892.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
   }
 
   a {

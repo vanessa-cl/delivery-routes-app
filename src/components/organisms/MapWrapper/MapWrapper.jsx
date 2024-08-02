@@ -35,7 +35,7 @@ export default function MapWrapper({ polylines }) {
             );
           })}
           {polylines.length > 0 ? (
-            <Polyline path={polylines} strokeColor="#FF3068" />
+            <Polyline path={polylines} strokeColor="#FF8C00" />
           ) : (
             <></>
           )}

@@ -7,10 +7,10 @@ export const OrdersPage = styled.main`
 `;
 
 export const CardsContainer = styled.div`
-  ${centerItemsBox}
+  display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  margin: 16px 0 8px 0;
+  margin: 24px 0;
   gap: 5%;
   flex-wrap: wrap;
   flex-grow: 1;

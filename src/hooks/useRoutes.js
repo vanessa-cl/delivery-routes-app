@@ -2,7 +2,7 @@ import { MapWrapperContext } from "@/context/MapWrapperContext";
 import { geocodingService } from "@/services/GeocodingService";
 import { branch1, branch2 } from "@/utils/branch";
 import { routeBranch1, routeBranch2 } from "@/utils/routeBranches";
-import { useCallback, useContext, useState } from "react";
+import { useCallback, useContext } from "react";
 
 const fuelPerL = 49.1;
 
@@ -52,14 +52,17 @@ export default function useRoutes() {
     formattedRouteData(routeBranch2, selectedOrders);
   };
 
-  const getRoutePolylines = (route) => {
-    const getRouteSteps = route.details.map((item) => item.steps);
-    const testeConcat = getRouteSteps[0].concat(getRouteSteps[1]);
-    const newPolylines = testeConcat.flatMap((item) => {
-      return [item.startLocation, item.endLocation];
-    });
-    updatePolylines(newPolylines);
-  };
+  const getRoutePolylines = useCallback(
+    (route) => {
+      const getRouteSteps = route?.details?.map((item) => item.steps);
+      const testeConcat = getRouteSteps[0].concat(getRouteSteps[1]);
+      const newPolylines = testeConcat.flatMap((item) => {
+        return [item.startLocation, item.endLocation];
+      });
+      updatePolylines(newPolylines);
+    },
+    [updatePolylines]
+  );
 
   const getTotalDistance = (route) => {
     return route

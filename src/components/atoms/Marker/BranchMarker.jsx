@@ -21,9 +21,9 @@ export default function BranchMarker(options) {
           faMapMarkerAlt.icon[0] / 2, 
           faMapMarkerAlt.icon[1] 
         ),
-        strokeWeight: 1,
+        strokeWeight: 0.25,
         strokeColor: "#333333",
-        scale: 0.075,
+        scale: 0.080,
       },
     });
   }
