@@ -3,6 +3,11 @@ import { geocodingService } from "@/services/GeocodingService";
 import { branch1, branch2 } from "@/utils/branch";
 import { routeBranch1, routeBranch2 } from "@/utils/routeBranches";
 import { useCallback, useContext } from "react";
+import {
+  standardMax,
+  standardMin,
+  standardWeights,
+} from "@/utils/standardParams";
 
 const fuelPerL = 49.1;
 
@@ -29,19 +34,22 @@ export default function useRoutes() {
       };
     });
     const distance = getTotalDistance(format);
-    const totalFuel = Number(getFuel(distance).toFixed(2));
-    const cost = Number(getTotalCost(totalFuel).toFixed(2));
-    const totalTime = getTotalApproximateTime(format);
+    const fuel = Number(getFuel(distance).toFixed(2));
+    const cost = Number(getTotalCost(fuel).toFixed(2));
+    const approximateTime = getTotalApproximateTime(format);
 
     const formattedData = {
       id: route.id,
-      totalDistance: distance,
-      cost: cost,
-      fuel: totalFuel,
-      approximateTime: totalTime,
+      distance,
+      cost,
+      fuel,
+      approximateTime,
       details: format,
-      orders: orders,
-      weight: calcRouteWeight(cost, totalFuel, distance, totalTime),
+      orders,
+      weight: calcRouteWeight(
+        { cost, fuel, distance, approximateTime },
+        standardWeights
+      ),
     };
 
     updateRoutes((routes) => [...routes, formattedData]);
@@ -63,6 +71,10 @@ export default function useRoutes() {
     },
     [updatePolylines]
   );
+
+  const normalizeParams = (value, key) => {
+    return (value - standardMin[key]) / (standardMax[key] - standardMin[key]);
+  };
 
   const getTotalDistance = (route) => {
     return route
@@ -97,8 +109,14 @@ export default function useRoutes() {
     return routes.sort((a, b) => a.weight - b.weight);
   }, [routes]);
 
-  const calcRouteWeight = (cost, fuel, distance, approximateTime) => {
-    return (cost + fuel + distance + approximateTime) / 4;
+  const calcRouteWeight = (values, weights) => {
+    const normalizedParams = Object.entries(values).map(([key, value]) =>
+      normalizeParams(value, key)
+    );
+    return normalizedParams.reduce(
+      (sum, value, index) => sum + value * weights[index],
+      0
+    );
   };
 
   return {

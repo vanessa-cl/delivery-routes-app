@@ -141,7 +141,7 @@ const RoutesListView = () => {
                   cost: route.cost,
                   fuel: route.fuel,
                   approximateTime: route.approximateTime,
-                  distance: route.totalDistance,
+                  distance: route.distance,
                 }}
                 variant="secondary"
                 onClick={() => getRoutePolylines(route)}
