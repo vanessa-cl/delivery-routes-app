@@ -1,4 +1,3 @@
-import { centerItemsBox } from "@/styles/mixins/box.mixin";
 import { main } from "@/styles/mixins/main.mixin";
 import styled from "styled-components";
 

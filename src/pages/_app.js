@@ -6,12 +6,14 @@ import {
   Content,
   ImageBackground,
   ImageContainer,
-  ImageFilter,
 } from "@/styles/generics/Image.styles";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 export default function App({ Component, pageProps }) {
   return (
     <ImageContainer>
+      <ToastContainer toastId={1} autoClose={5000} />
       <ImageBackground />
       <Content>
         <GlobalStyle />

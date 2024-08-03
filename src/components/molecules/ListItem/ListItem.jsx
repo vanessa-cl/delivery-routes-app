@@ -6,6 +6,7 @@ import BasicButton from "@/components/atoms/Button/BasicButton/BasicButton";
 import DeleteIconButton from "@/components/atoms/Button/DeleteIconButton/DeleteIconButton";
 import classNames from "classnames";
 import Checkbox from "@/components/atoms/Checkbox/Checkbox";
+import { toast } from "react-toastify";
 
 const OrderDetails = ({ id, checked, details: { address }, variant }) => {
   return (
@@ -29,6 +30,8 @@ const RouteDetails = ({
   variant,
 }) => {
   const filteredOrdersIds = orders.map((order) => `N°${order.id}`).join(", ");
+  const notify = () =>
+    toast.success(`Pedidos da rota n°${id} despachados com sucesso!`);
 
   return (
     <>
@@ -67,6 +70,7 @@ const RouteDetails = ({
           name="dispatch-route-button"
           label="Despachar"
           variant="secondary"
+          onClick={notify}
         />
       </S.ListItemButtonWrapper>
     </>

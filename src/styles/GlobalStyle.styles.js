@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-// import { background } from "../../public/images/iStock-1215384892.jpg";
 
 export default createGlobalStyle`
   :root {
@@ -23,6 +22,9 @@ export default createGlobalStyle`
     --green-border: 2px solid var(--green);
     --main-box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
     rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    --toastify-font-family: 'Outfit', sans-serif;
+    --toastify-color-light: #666666;
+    --toastify-text-color-light: #FFFFFF;
   }
 
   *,
