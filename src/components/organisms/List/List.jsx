@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import useOrders from "@/hooks/useOrders";
 import { useContext, useEffect, useState } from "react";
 import { MapWrapperContext } from "@/context/MapWrapperContext";
-import useRoutes from "@/hooks/useRoutes";
+import useDijkstraAlgorithm from "@/hooks/useDijkstraAlgorithm";
 
 const goToHome = (router) => {
   router.push("/");
@@ -16,29 +16,15 @@ const goToHome = (router) => {
 
 const OrdersListView = ({ orders }) => {
   const [selectedOrders, setSelectedOrders] = useState([]);
-  const { allLocations, setAllOrdersLocations } = useOrders();
-  const { updateCenter, updateMarkers, updatePolylines } =
-    useContext(MapWrapperContext);
-  const {
-    setRoutePolylines,
-    createRoute,
-    routes,
-    completedRoute,
-    setRouteData,
-  } = useRoutes();
+  const { allLocations, setAllLocations } = useOrders();
+  const { updateCenter } = useContext(MapWrapperContext);
   const router = useRouter();
 
-  useEffect(() => {
-    if (allLocations.length < 1) {
-      setAllOrdersLocations(orders);
-    }
-  }, [orders, allLocations, setAllOrdersLocations]);
-
-  useEffect(() => {
-    if (allLocations.length > 0) {
-      updateMarkers((markers) => [...markers, ...allLocations]);
-    }
-  }, [allLocations, updateMarkers, updateCenter]);
+  // useEffect(() => {
+  //   // if (allLocations.length < 1) {
+  //   setAllLocations(selectedOrders);
+  //   // }
+  // }, [allLocations, selectedOrders, setAllLocations]);
 
   const handleOrderClick = (order) => {
     console.log(`Pedido clicado: ${order.id}`);
@@ -46,7 +32,6 @@ const OrdersListView = ({ orders }) => {
       const updatedOrders = selectedOrders.filter((item) => {
         return item.id !== order.id;
       });
-      // updatePolylines([]);
       return setSelectedOrders(updatedOrders);
     }
 
@@ -57,6 +42,7 @@ const OrdersListView = ({ orders }) => {
     <S.List variant="primary">
       <ListTitle text="Selecione os pedidos para a próxima rota de entregas:" />
       <S.ListWrapper>
+        {console.log(selectedOrders)}
         {allLocations.length > 0 ? (
           allLocations.map((order, idx) => {
             return (
@@ -94,8 +80,9 @@ const OrdersListView = ({ orders }) => {
             name="create-route-button"
             label="Criar rota"
             variant="primary"
+            disabled={(selectedOrders.length < 2)}
             onClick={() => {
-              createRoute(selectedOrders);
+              // createRoute(selectedOrders);
               router.push("/rotas");
             }}
           />
@@ -107,17 +94,17 @@ const OrdersListView = ({ orders }) => {
 
 const RoutesListView = () => {
   const router = useRouter();
-  const { getBestRoute, routes, getRoutePolylines } = useRoutes();
-  const { updateBestRoute, bestRoute } = useContext(MapWrapperContext);
+  const { routes } = useContext(MapWrapperContext);
+  const { placeRoutePolylinesOnMap } = useDijkstraAlgorithm();
 
-  useEffect(() => {
-    if (!(routes.length > 0)) {
-      return;
-    }
-    const findBestRoute = getBestRoute(routes);
-    updateBestRoute(findBestRoute[0]);
-    getRoutePolylines(findBestRoute[0]);
-  }, [getBestRoute, routes, updateBestRoute, getRoutePolylines]);
+  // useEffect(() => {
+  //   if (!(routes.length > 0)) {
+  //     return;
+  //   }
+  //   const findBestRoute = getBestRoute(routes);
+  //   updateBestRoute(findBestRoute[0]);
+  //   getRoutePolylines(findBestRoute[0]);
+  // }, [getBestRoute, routes, updateBestRoute, getRoutePolylines]);
 
   return (
     <S.List variant="secondary">
@@ -137,15 +124,15 @@ const RoutesListView = () => {
                 id={route.id}
                 itemType="route"
                 details={{
-                  orders: route.orders,
+                  // orders: route.orders,
                   cost: route.cost,
                   fuel: route.fuel,
                   approximateTime: route.approximateTime,
                   distance: route.distance,
                 }}
                 variant="secondary"
-                onClick={() => getRoutePolylines(route)}
-                bestRoute={bestRoute.id === route.id}
+                onClick={() => placeRoutePolylinesOnMap(route)}
+                bestRoute={false}
               />
             );
           })

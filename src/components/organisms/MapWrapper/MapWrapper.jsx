@@ -25,15 +25,17 @@ export default function MapWrapper({ polylines }) {
             position={branch2.geometry.location}
             title={"Filial Candeias"}
           />
-          {markers.map((marker, idx) => {
-            return (
-              <Marker
-                key={idx}
-                position={marker.location}
-                title={String(marker.id)}
-              />
-            );
-          })}
+          {markers
+            .filter((item) => !item.id.includes("Filial"))
+            .map((marker, idx) => {
+              return (
+                <Marker
+                  key={idx}
+                  position={marker.location}
+                  title={String(marker.id)}
+                />
+              );
+            })}
           {polylines.length > 0 ? (
             <Polyline path={polylines} strokeColor="#FF8C00" />
           ) : (

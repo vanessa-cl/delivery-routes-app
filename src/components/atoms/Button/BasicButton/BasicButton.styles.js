@@ -12,4 +12,8 @@ export const BasicButton = styled.button`
     background-color: ${(props) =>
       props.variant === "primary" ? "var(--dark-red)" : "var(--dark-orange)"};
   }
+  
+  &:disabled {
+    background-color: var(--light-gray);
+  }
 `;

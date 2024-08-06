@@ -29,14 +29,14 @@ const RouteDetails = ({
   details: { orders, cost, fuel, approximateTime, distance },
   variant,
 }) => {
-  const filteredOrdersIds = orders.map((order) => `N°${order.id}`).join(", ");
+  // const filteredOrdersIds = orders.map((order) => `N°${order.id}`).join(", ");
   const notify = () =>
-    toast.success(`Pedidos da rota n°${id} despachados com sucesso!`);
+    toast.success(`Pedidos da rota despachados com sucesso!`);
 
   return (
     <>
       <S.ListItemBetweenRow>
-        <ListItemTitle text={`Rota N°${id}`} variant={variant} />
+        <ListItemTitle text={id} variant={variant} />
         <S.ListItemFirstRow>
           <ListItemText text="Distância total:" variant={variant} />
           <ListItemText text={`${(distance / 1000).toFixed(2)}km`} />
@@ -44,7 +44,7 @@ const RouteDetails = ({
       </S.ListItemBetweenRow>
       <S.ListItemRow>
         <ListItemText text="Pedidos:" variant="secondary" />
-        <ListItemText text={filteredOrdersIds} />
+        {/* <ListItemText text={filteredOrdersIds} /> */}
       </S.ListItemRow>
       <S.ListItemRow>
         <ListItemText text="Combustível gasto:" variant="secondary" />
@@ -55,7 +55,7 @@ const RouteDetails = ({
         <ListItemText text={formatNumberToMoney(cost)} />
       </S.ListItemRow>
       <S.ListItemRow>
-        <ListItemText text="Entrega aproximada em até:" variant="secondary" />
+        <ListItemText text="Trajeto percorrido em até:" variant="secondary" />
         <ListItemText text={`${approximateTime.toFixed(2)}min`} />
       </S.ListItemRow>
       {bestRoute ? (

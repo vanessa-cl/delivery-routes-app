@@ -1,4 +1,5 @@
 export const branch1 = {
+  id: "Filial Olívia",
   address_components: [
     {
       long_name: "3900",
@@ -64,6 +65,7 @@ export const branch1 = {
 };
 
 export const branch2 = {
+  id: "Filial Candeias",
   address_components: [
     {
       long_name: "16",
