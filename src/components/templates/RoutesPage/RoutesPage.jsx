@@ -9,15 +9,15 @@ import { useContext, useEffect } from "react";
 import useDijkstraAlgorithm from "@/hooks/useDijkstraAlgorithm";
 
 export default function RoutesPage() {
-  const { ordersNodes, routes, polylines } = useContext(MapWrapperContext);
+  const { ordersNodes, routes, polylines, updateBestRoute } = useContext(MapWrapperContext);
   const { getEdges, findBestRoute } = useDijkstraAlgorithm();
 
   useEffect(() => {
     if (ordersNodes.length > 0) {
       getEdges(ordersNodes);
-      findBestRoute();
+      updateBestRoute(findBestRoute())
     }
-  }, [findBestRoute, getEdges, ordersNodes]);
+  }, [findBestRoute, getEdges, ordersNodes, updateBestRoute]);
 
   return (
     <S.RoutesPage>

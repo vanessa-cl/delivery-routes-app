@@ -179,7 +179,7 @@ export default function useDijkstraAlgorithm() {
   const placeRoutePolylinesOnMap = useCallback(
     (route) => {
       const getRouteSteps = route?.edges.map((edge) => edge.steps);
-      
+
       const joinAllSteps = getRouteSteps[0]
         .concat(getRouteSteps[1])
         .concat(getRouteSteps[2]);
@@ -242,6 +242,13 @@ export default function useDijkstraAlgorithm() {
     const distancesBranch2 = dijkstra(mockGraph, "Filial Candeias");
     console.log(distancesBranch1);
     console.log(distancesBranch2);
+    const sumWeights1 = Object.values(distancesBranch1).reduce((a, b) => {
+      return a + b;
+    }, 0);
+    const sumWeights2 = Object.values(distancesBranch2).reduce((a, b) => {
+      return a + b;
+    }, 0);
+    return sumWeights1 < sumWeights2 ? branch1.id : branch2.id;
   }, []);
 
   return { getNodes, getEdges, placeRoutePolylinesOnMap, findBestRoute };

@@ -80,7 +80,7 @@ const OrdersListView = ({ orders }) => {
             name="create-route-button"
             label="Criar rota"
             variant="primary"
-            disabled={(selectedOrders.length < 2)}
+            disabled={selectedOrders.length < 2}
             onClick={() => {
               // createRoute(selectedOrders);
               router.push("/rotas");
@@ -94,7 +94,7 @@ const OrdersListView = ({ orders }) => {
 
 const RoutesListView = () => {
   const router = useRouter();
-  const { routes } = useContext(MapWrapperContext);
+  const { routes, bestRoute } = useContext(MapWrapperContext);
   const { placeRoutePolylinesOnMap } = useDijkstraAlgorithm();
 
   // useEffect(() => {
@@ -132,7 +132,7 @@ const RoutesListView = () => {
                 }}
                 variant="secondary"
                 onClick={() => placeRoutePolylinesOnMap(route)}
-                bestRoute={false}
+                bestRoute={route.id.includes(bestRoute)}
               />
             );
           })
